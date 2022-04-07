@@ -11,3 +11,20 @@ body{
     background-color: $very-dark-blue;
     font-family: 'Overpass', sans-serif;
 }
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+    color:$medium-grey-icon;
+    span{
+        color:$light-grey;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    span:hover{
+        text-decoration: none;
+        color:$dark-blue
+    }
+}
