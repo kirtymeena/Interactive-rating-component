@@ -1,0 +1,219 @@
+@use "../utils/breakpoints" as *;
+@use "../utils/varibales" as *;
+@use "../utils/mixin" as *;
+
+.card {
+  max-width: 400px;
+  height: 370px;
+  width: 330px;
+  perspective: 1000px;
+
+  @include desktop {
+    height: 416px;
+    width: 440px;
+  }
+}
+
+.alert {
+  color: white;
+  position: absolute;
+  z-index: 3;
+
+  width: 100%;
+  height: 30px;
+  text-align: center;
+  padding-top: 6px;
+  border-radius: 30px;
+  font-weight: 700;
+  background-color: $medium-grey-icon;
+  opacity: 80%;
+}
+
+.card__wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: all 1s linear;
+  transform-style: preserve-3d;
+}
+
+// card's front and back
+.card__front {
+  position: absolute;
+  inset: 0;
+  align-self: center;
+  justify-self: center;
+  border-radius: 20px;
+  background-color: $dark-blue;
+  padding: 2rem;
+  backface-visibility: hidden;
+  transition-duration: 2s;
+
+  // after adding this it works in firefox
+  transform: rotateX(0deg);
+}
+
+.card__front {
+  z-index: 2;
+}
+
+.card__content {
+  @include displayFlexCenter(column);
+}
+.card__back {
+  @extend .card__front;
+  @include displayFlexCenter(column);
+  z-index: 1;
+  transform: rotateY(180deg);
+  color: white;
+  background-color: $dark-blue;
+  transform: rotateY(180deg);
+  text-align: center;
+  .card__header__wrapper {
+    margin-top: 1rem;
+    padding: 6px 0px 5px 0px;
+    width: 200px;
+    background-color: $medium-grey-flip;
+    color: $Orange;
+    border-radius: 30px;
+    @include desktop {
+      margin-top: 2rem;
+    }
+  }
+  .card__text {
+    margin-top: 1.5rem;
+    font-size: 12px;
+    @include desktop {
+      margin-top: 2.5rem;
+    }
+    h1 {
+      opacity: 90%;
+      font-weight: 700;
+    }
+    p {
+      color: $light-grey;
+      opacity: 70%;
+      font-size: 15px;
+      margin-top: 0.8rem;
+      line-height: 1.3rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      font-weight: 300;
+      @include desktop {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+// flip
+.card.rotate .card__wrapper {
+  transform: rotateY(180deg);
+}
+
+// do not touch any code from here
+.card__items {
+  @include displayFlex(column);
+  align-self: flex-start;
+  text-align: left;
+
+  .heading {
+    font-size: 24px;
+    color: $white;
+    opacity: 90%;
+    padding-top: 20px;
+    @include desktop {
+      margin-top: 19px;
+      word-spacing: 8px;
+    }
+  }
+  .content {
+    color: $light-grey;
+    font-size: 16px;
+    margin-top: 12px;
+    @include desktop {
+      line-height: 22px;
+    }
+  }
+}
+.star__icon {
+  border-radius: 50%;
+  width: 37px;
+  height: 37px;
+
+  background-color: $medium-grey-icon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  @include desktop {
+    width: 44px;
+    height: 42px;
+  }
+  svg {
+    transform: scale(0.8);
+    @include desktop {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.rating__btn {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  @include desktop {
+    margin-top: 35px;
+  }
+
+  .rating {
+    width: 45px;
+    border: none;
+    height: 45px;
+    border-radius: 50%;
+    background-color: $medium-grey-icon;
+    text-align: center;
+    color: $white;
+    opacity: 50%;
+    font-weight: 700;
+    cursor: pointer;
+
+    @include desktop {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  .rating:hover {
+    background-color: $light-grey;
+    opacity: 100%;
+  }
+  .rating:focus {
+    background-color: $Orange;
+    opacity: 100%;
+  }
+}
+
+.btn {
+  width: 100%;
+  padding-block: 1rem;
+  margin-top: 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  background-color: $Orange;
+  color: $white;
+
+  border: none;
+  cursor: pointer;
+
+  @include desktop {
+    margin-top: 30px;
+  }
+}
+
+.btn:hover {
+  background-color: $white;
+  color: $Orange;
+}
+.btn:active {
+  background-color: $Orange;
+  color: $white;
+}
